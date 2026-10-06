@@ -1,0 +1,43 @@
+export const LIGHT_COLORS = {
+  background: "#F7F8F3",
+  surface: "#FFFFFF",
+  surfaceSecondary: "#EEF2EA",
+  primary: "#286F49",
+  primaryDark: "#1E5939",
+  primaryLight: "#E2F0E7",
+  text: "#0F172A",
+  textSecondary: "#64748B",
+  border: "#E2E8F0",
+  danger: "#DC2626",
+  warning: "#F59E0B",
+  success: "#1E7048",
+  white: "#FFFFFF",
+  black: "#000000",
+  proteinTint: "#DBEAFE",
+  carbsTint: "#FEF3C7",
+  fatTint: "#FCE7F3",
+  overlay: "rgba(15, 23, 42, 0.72)",
+} as const;
+
+export const DARK_COLORS: ColorPalette = {
+  background: "#101712",
+  surface: "#18221B",
+  surfaceSecondary: "#222F26",
+  primary: "#286F49",
+  primaryDark: "#81D9A0",
+  primaryLight: "#233D2C",
+  text: "#F1F5F2",
+  textSecondary: "#B2C0B6",
+  border: "#334139",
+  danger: "#FCA5A5",
+  warning: "#FCD34D",
+  success: "#86EFAC",
+  white: "#FFFFFF",
+  black: "#000000",
+  proteinTint: "#203954",
+  carbsTint: "#44391B",
+  fatTint: "#422A3B",
+  overlay: "rgba(0, 0, 0, 0.78)",
+};
+
+export type ColorPalette = { [K in keyof typeof LIGHT_COLORS]: string };

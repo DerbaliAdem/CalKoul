@@ -1,18 +1,22 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { MealProvider } from "../features/meals/MealContext";
+import { ProfileProvider } from "../features/profile/ProfileContext";
+import { ActivityProvider } from "../features/activity/ActivityContext";
+import { PreferencesProvider, useTheme } from "../context/PreferencesContext";
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
-
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <PreferencesProvider>
+      <ThemedNavigation />
+    </PreferencesProvider>
   );
+}
+
+function ThemedNavigation() {
+  const { resolvedTheme } = useTheme();
+  return <ProfileProvider><ActivityProvider><MealProvider>
+    <StatusBar style={resolvedTheme === "dark" ? "light" : "dark"} />
+    <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: "transparent" } }} />
+  </MealProvider></ActivityProvider></ProfileProvider>;
 }
